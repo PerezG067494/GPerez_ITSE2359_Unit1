@@ -1,4 +1,5 @@
 This is my character creator code for my submission. The way it works is simple, select option 1 and create a character and the program lets you create one character.
 The most challenging part of this program was trying to figure out why my program wasn't looping right at one point. I thought I wasn't writing the right code for the
 program to loop properly, but it turns out that I was overthinking it. I has simply forgotten to put a "break;" at the end of my calculation lines. Overall as soon as 
-figured out how majority of the project was gonna work I was able to finish it with no problem.
+figured out how majority of the project was gonna work I was able to finish it with no problem. 
+I didn't implement any bonus features unfortunitely. I'm balancing a lot of classes this semester along with my job I was really trying to get this working in the firs place
