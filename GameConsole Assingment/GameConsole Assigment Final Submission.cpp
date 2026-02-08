@@ -5,9 +5,9 @@
 
 
 using namespace std;
-int LOOP = 1;
 int Menu;
 int Class;
+int Bonus;
 string CharacterName;
 int Strength;
 int Intelligence;
@@ -18,8 +18,9 @@ int HP;
 int MP;
 int AttackPower;
 int Defense;
+int Check = 0;
 bool keepRunning = true;
-
+bool noCharacter = true;
 int main()
 {
 	/*Main Menu Code*/
@@ -43,6 +44,8 @@ int main()
 		cout << endl;
 		cout << endl;
 		cout << endl;
+
+		
 	
 	switch(Menu)
 	{
@@ -59,6 +62,12 @@ int main()
 		cout << "4. Cleric" << endl;
 		cout << "Enter choice (1-4):";
 			cin >> Class;
+			while (Class < 0 || Class > 4)
+			{
+				cout << "Input Invalid, Please input a choice between 1 and 4: ";
+					cin >> Class;
+			}
+
 
 		/*Base Stats Entry*/
 	cout << "Enter Base stats (1-20)" << endl;
@@ -68,7 +77,7 @@ int main()
 					cin >> Strength;
 						cout << endl;
 
-		if (Strength < 0 || Strength > 21)
+		while (Strength < 0 || Strength > 21)
 {
 	cout << "Invalid Input - Please use a number 1 - 20" << endl;
 	cin >> Strength;
@@ -79,7 +88,7 @@ int main()
 					cin >> Intelligence;
 						cout << endl;
 
-		if (Intelligence < 0 || Intelligence > 21)
+		while (Intelligence < 0 || Intelligence > 21)
 {
 	cout << "Invalid Input - Please use a number 1 - 20" << endl;
 	cin >> Intelligence;
@@ -90,7 +99,7 @@ int main()
 					cin >> Dexterity;
 						cout << endl;
 
-		if (Dexterity < 0 || Dexterity > 21)
+		while (Dexterity < 0 || Dexterity > 21)
 {
 	cout << "Invalid Input - Please use a number 1 - 20" << endl;
 	cin >> Dexterity;
@@ -100,15 +109,15 @@ int main()
 				cout << "Constitution: ";
 					cin >> Constitution;
 						cout << endl;
-		if (Constitution < 0 || Constitution > 21)
+		while (Constitution < 0 || Constitution > 21)
 {
 	cout << "Invalid Input - Please use a number 1 - 20" << endl;
 	cin >> Constitution;
 }
 
 /*Character Successfully created*/
-cout << "Character created Succesfully!" << endl<< endl;
-switch(Class)
+				cout << "Character created Succesfully!" << endl<< endl;
+					switch(Class)
 	{
 		case 1:
 		cout << "Warrior class bonus: Strenght +2"<< endl;
@@ -126,121 +135,93 @@ switch(Class)
 		cout << "Cleric class Bonus: Constitution +2" << endl;
 		break;
 	}	
-		cout << endl;
-		break;/*End of Character Creator Screen*/
+				cout << endl;
+
+noCharacter = false;
+		break;
+		/*End of Character Creator Screen*/
 
 /********************************************************************************/
 
 	/*Character Stats Viewer Case*/
 
 		case 2:/*Character Stats*/
+if(noCharacter)
+	{
+	cout << "No Character Data found. Please Input 1 to create a character.." << endl;
+	}
+else
+	{
+
+		cout << "=== Character Profile ===" << endl;
+		cout << "Name: " << CharacterName << endl;
 			switch(Class)
 		{
 			/*Warrior Class*/
 			case 1: 
-			cout << "=== Character Profile ===" << endl;
-			cout << "Name: " << CharacterName << endl;
 			cout << "Class: Warrior" << endl;
-			cout << "Level: " << Level << endl;
-			cout << endl;
-			cout << "Base Stats: " << endl;
-			cout << "Strength: " << Strength << "(+2 Class Bonus) = "; Strength = Strength + 2; cout << Strength << endl;
-			cout << "Intelligence: " << Intelligence << endl;
-			cout << "Dexterity: " << Dexterity << endl;
-			cout << "Constitution: " << Constitution << endl;
-			cout << endl;
 			break;
 			
 			/*Mage Class*/
 			case 2: 
-			cout << "=== Character Profile ===" << endl;
-			cout << "Name: " << CharacterName << endl;
 			cout << "Class: Mage" << endl;
-			cout << "Level: " << Level << endl;
-			cout << endl;
-			cout << "Base Stats: " << endl;
-			cout << "Strength: " << Strength << endl;
-			cout << "Intelligence: " << Intelligence << "(+2 Class Bonus) = "; Intelligence = Intelligence + 2; cout << Intelligence << endl;
-			cout << "Dexterity: " << Dexterity << endl;
-			cout << "Constitution: " << Constitution << endl;
-			cout << endl;
 			break;
 
 			/*Rouge Class*/
 			case 3: 
-			cout << "=== Character Profile ===" << endl;
-			cout << "Name: " << CharacterName << endl;
 			cout << "Class: Rouge" << endl;
-			cout << "Level: " << Level << endl;
-			cout << endl;
-			cout << "Base Stats: " << endl;
-			cout << "Strength: " << Strength << endl;
-			cout << "Intelligence: " << Intelligence << endl;
-			cout << "Dexterity: " << Dexterity << "(+2 Class Bonus) = "; Dexterity = Dexterity + 2; cout << Dexterity << endl;
-			cout << "Constitution: " << Constitution << endl;
-			cout << endl;
 			break;
 
 			/*Cleric Class*/
-			case 4: 
-			cout << "=== Character Profile ===" << endl;
-			cout << "Name: " << CharacterName << endl;
+			case 4:
 			cout << "Class: Cleric" << endl;
-			cout << "Level: " << Level << endl;
-			cout << endl;
-			cout << "Base Stats: " << endl;
+			break;
+
+		}
+		cout << "Level: " << Level << endl;
+		cout << endl;
+		cout << "Base Stats:" << endl;
+		switch(Class)
+		{
+			/*Warrior*/
+			case 1:
+			cout << "Strength: " << Strength << "(+2 Class Bonus) = " << Bonus << endl;
+			cout << "Intelligence: " << Intelligence << endl;
+			cout << "Dexterity: " << Dexterity << endl;
+			cout << "Constitution: " << Constitution << endl;
+			break;
+
+			/*Mage*/
+			case 2:
+			cout << "Strength: " << Strength << endl;
+			cout << "Intelligence: " << Intelligence << "(+2 Class Bonus) = " << Bonus << endl;
+			cout << "Dexterity: " << Dexterity << endl;
+			cout << "Constitution: " << Constitution << endl;
+			break;
+
+			/**/
+			case 3:
+			cout << "Strength: " << Strength << endl;
+			cout << "Intelligence: " << Intelligence << endl;
+			cout << "Dexterity: " << Dexterity << "(+2 Class Bonus) = " << Bonus << endl;
+			cout << "Constitution: " << Constitution << endl;
+			break;
+			case 4:
 			cout << "Strength: " << Strength << endl;
 			cout << "Intelligence: " << Intelligence << endl;
 			cout << "Dexterity: " << Dexterity << endl;
-			cout << "Constitution: " << Constitution << "(+2 Class Bonus) = "; Constitution = Constitution + 2; cout << Constitution << endl;
-			cout << endl;
+			cout << "Constitution: " << Constitution << "(+2 Class Bonus) = " << Bonus << endl;
 			break;
-
-			default:
-			cout << "No character found" << endl;
-			cout << endl;
 		}
-
-	/*Combat Ratings Calculations*/	
-		for(int Level = 1; Class >= 1 && Class <= 5 ;)
-				{
-					HP = (Constitution * 10) + (Level * 5);
-					MP = (Intelligence * 10) + (Level * 3);
-					
-					/*Switch used for different Class Modifiers*/
-					switch(Class)
-					{
-					/*Warrior Modifier*/
-					case 1:
-					AttackPower = Strength * 1.5;
-					HP = HP + 10;
-					break;
-
-					/*Mage Modifier*/
-					case 2:
-					AttackPower = Intelligence * 1.3;
-					MP = MP+30;
-					break;
-
-					/*Rouge Modifier*/
-					case 3:
-					AttackPower = Dexterity * 1.4;
-					break;
-
-					/*Cleric Modifier*/
-					case 4:
-					AttackPower = (Strength + Intelligence) * 0.8;
-					break;
-					}
-
-					Defense = (Constitution + Dexterity) / 2;
-					break;
-				}
+	
+	
+	
 		cout << "Combat Stats: " << endl;
 		cout << "Health Points: " << HP << endl;
 		cout << "Mana Points: " << MP << endl;
 		cout << "Attack Power: " << AttackPower << endl;
-		cout << "Defense: " << Defense << endl; 
+		cout << "Defense: " << Defense << endl;
+	}	 
 		break;
 
 /********************************************************************************/
@@ -248,6 +229,12 @@ switch(Class)
 	/*Combat Ratings Case*/
 
 		case 3:
+if(noCharacter)
+	{
+	cout << "No Character Data found. Please Input 1 to create a character.." << endl;
+	}
+else
+	{
 		cout << "===COMBAT RATINGS==="<< endl;
 		cout << endl;
 
@@ -279,14 +266,21 @@ switch(Class)
 		}
 		cout << endl;
 		cout << endl;
+	}
 		break;
 
 /*************************************************************************************/
 	/*Level Up Case*/
 
 		case 4:
+if(noCharacter)
+	{
+	cout << "No Character Data found. Please Input 1 to create a character.." << endl;
+	}
+else
+	{
 		cout << "=== LEVEL UP ===" << endl;
-		if (Level <= 10)
+		if (Level < 10)
 		{
 			cout << "Current Level: " << Level << endl;
 			Level = Level + 1;
@@ -313,23 +307,73 @@ switch(Class)
 			cout << "Combat Stats Recalculated" << endl;
 			
 		}
+
+		/*Level Maxed Out Screen*/
+
 		else
 		 {
 			cout << "LEVEL MAXED" << endl;
 		}
+
+	}
 		break;
+
+		/*End of Level Up Screen*/
 		
+		/*Program Closing Case*/
 		case 5:
 		cout << "Closing Program..." << endl;
 		keepRunning = false;
 		break;
 		
+		/*End of Closing Screen*/
 
-		/*For if the Input is outside the menu range*/
+		/*Out of Range Input Screen*/
 		default:
 		cout << "Invalid input, Please input 1-5" << endl;
+		cout << endl;
 		break;
+
 	}
+
+	/*Combat Ratings Calculations*/	
+
+					HP = (Constitution * 10) + (Level * 5);
+					MP = (Intelligence * 10) + (Level * 3);
+					
+					/*Switch used for different Class Modifiers*/
+					switch(Class)
+					{
+					/*Warrior Modifier*/
+					case 1:
+					AttackPower = Strength * 1.5;
+					HP = HP + 20;
+					Bonus = Strength + 2;
+					break;
+
+					/*Mage Modifier*/
+					case 2:
+					AttackPower = Intelligence * 1.3;
+					MP = MP+30;
+					Bonus = Intelligence + 2;
+					break;
+
+					/*Rouge Modifier*/
+					case 3:
+					AttackPower = Dexterity * 1.4;
+					Bonus = Dexterity + 2;
+					break;
+
+					/*Cleric Modifier*/
+					case 4:
+					AttackPower = (Strength + Intelligence) * 0.8;
+					Bonus = Constitution + 2;
+					break;
+					}
+
+					Defense = (Constitution + Dexterity) / 2;
+
+	/*End of Calculation Section*/
 	
 
 	
