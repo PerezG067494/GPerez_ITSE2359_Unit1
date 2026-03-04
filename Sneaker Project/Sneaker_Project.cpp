@@ -22,6 +22,8 @@ Sneaker ProductInfo[MAX_SNEAKERS];
 
 void displaySneaker(Sneaker s);
 void displayAll(Sneaker arr[], int count);
+string brandToString(SneakerBrand b);
+string categoryToString(SneakerCategory c);
 
 int main(){
 
@@ -43,6 +45,7 @@ while(keepRunning) {
 
     switch(menu){
         case 1: 
+    
         displayAll(ProductInfo, productCount);
         
         break;
@@ -80,7 +83,9 @@ while(keepRunning) {
 
 void displayAll(Sneaker arr[], int count){
 
+      
     for(int i = 0; i < count; i++){
+    
          displaySneaker(arr[i]);
     }
 }
@@ -89,41 +94,40 @@ void displaySneaker(Sneaker s){
     int i;
     cout << "===Sneaker Product Info==="<< endl;
     //Hardcoded Sneakers Output
-    
-    cout << s.modelName << "||" << s.brand << "||" << s.category;
+    cout << s.modelName << "||" << brandToString(s.brand)<< "||" << categoryToString(s.category);
     cout <<"||" << s.size << "||" << s.price << "||" << s.isDeadstock << "||";
     cout << s.yearReleased << endl;
-
-    
-    //Inputed Sneakers Output
-     //for(i = 1; i < MAX_SNEAKERS; i++){
-            // cout << ProductInfo[i].modelName << "||" << ProductInfo[i].brand << "||" << ProductInfo[i].category;
-             //cout <<"||" << ProductInfo[i].size << "||" << ProductInfo[i].price << "||" << ProductInfo[i].isDeadstock << "||";
-            // cout << ProductInfo[i].yearReleased << endl;
-        //}
 }
 
 
 string brandToString(SneakerBrand b){
+    
     switch(b){
         case NIKE:
         return "Nike";
+ 
     
         case ADIDAS:
-        return "Adidas";
+         return "Adidas";
+
         
         case JORDAN:
-        return "Jordan";
+         return "Jordan";
+     
 
         case NEW_BALANCE:
-        return "New Balance";
-        
+       return "New Balance";
+   
+
         case VANS:
-        return "Vans";
+         return "Vans";
+   
 
         default:
-        return "Unknown";
+         return "Unknown";
+    
     }
+
 
 }
 
@@ -149,3 +153,4 @@ string categoryToString(SneakerCategory c){
     }
 
 }
+
